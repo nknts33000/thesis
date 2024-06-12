@@ -4,7 +4,10 @@ import com.example.platform.dto.*;
 import com.example.platform.exceptions.CustomException;
 import com.example.platform.exceptions.UserNotFoundException;
 import com.example.platform.model.*;
+import com.example.platform.searching.AdvertSearcher;
+import com.example.platform.searching.AdvertService;
 import com.example.platform.service.UserService;
+import org.elasticsearch.search.SearchService;
 import org.springframework.aot.hint.annotation.RegisterReflectionForBinding;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,10 +30,11 @@ import static java.lang.Long.parseLong;
 public class UserController {
 
     private final UserService userService;
-
+    private final AdvertService advertService;
     @Autowired
-    UserController(UserService userService){
+    UserController(UserService userService,AdvertService advertService){
        this.userService=userService;
+       this.advertService=advertService;
     }
 
     @ResponseBody
@@ -178,7 +182,7 @@ public class UserController {
     @ResponseBody
     @PostMapping("/createAdvert")
     public void createAdvert(@RequestBody Map<String,String> requestBody){
-        userService.addAdvert(requestBody);
+        advertService.addAdvert(requestBody);
         System.out.println("company id:" + requestBody.get("company"));
     }
 

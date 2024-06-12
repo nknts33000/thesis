@@ -87,11 +87,18 @@
 			<version>1.0.2</version>
 		</dependency>
 
+		<!-- Elasticsearch Dependencies -->
 		<dependency>
-			<groupId>org.elasticsearch</groupId>
-			<artifactId>elasticsearch</artifactId>
+			<groupId>org.elasticsearch.client</groupId>
+			<artifactId>elasticsearch-rest-high-level-client</artifactId>
 			<version>7.15.2</version>
 		</dependency>
+		<dependency>
+			<groupId>org.elasticsearch.client</groupId>
+			<artifactId>elasticsearch-rest-client</artifactId>
+			<version>7.15.2</version>
+		</dependency>
+
 
 
 	</dependencies>

@@ -337,20 +337,18 @@ public class UserService implements UserDetailsService {
         return user.getCompanies();
     }
 
-    public void addAdvert(Map<String,String> requestBody){
-        System.out.println("id is:" +requestBody.get("company"));
-        Company company= companyRepo.findCompanyByCompanyId(Long.valueOf(requestBody.get("company")));
-        System.out.println("company is:" +company);
-        advertRepo.save(
-                new Advert(
-                        requestBody.get("jobTitle"),
-                        requestBody.get("jobSummary"),
-                        requestBody.get("location"),
-                        requestBody.get("contactInformation"),
-                        company
-                )
-        );
-    }
+//    public void addAdvert(Map<String,String> requestBody){
+//        Company company= companyRepo.findCompanyByCompanyId(Long.valueOf(requestBody.get("company")));
+//        advertRepo.save(
+//                new Advert(
+//                        requestBody.get("jobTitle"),
+//                        requestBody.get("jobSummary"),
+//                        requestBody.get("location"),
+//                        requestBody.get("contactInformation"),
+//                        company
+//                )
+//        );
+//    }
 
     public Profile getProfileOfUser(long id) throws UserNotFoundException {
         User user= findUserById(id);
