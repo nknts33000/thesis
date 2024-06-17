@@ -1,19 +1,23 @@
 package com.example.platform.model;
 
-import com.example.platform.repo.CompanyRepo;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
-
 import java.util.List;
+import org.springframework.data.elasticsearch.annotations.Document;
+
 
 @Entity
 @Getter
 @Setter
+@Data
+@Document(indexName = "advertindex")
 public class Advert {
 
     @Id
+    @org.springframework.data.annotation.Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long advertId;
     @Column(nullable = false)

@@ -43,6 +43,7 @@ public class UserService implements UserDetailsService {
     private final ExprerienceRepo exprerienceRepo;
 
     private final EducationRepo educationRepo;
+
     private PasswordEncoder passwordEncoder;
 
     @Autowired
@@ -337,18 +338,19 @@ public class UserService implements UserDetailsService {
         return user.getCompanies();
     }
 
-//    public void addAdvert(Map<String,String> requestBody){
-//        Company company= companyRepo.findCompanyByCompanyId(Long.valueOf(requestBody.get("company")));
-//        advertRepo.save(
-//                new Advert(
-//                        requestBody.get("jobTitle"),
-//                        requestBody.get("jobSummary"),
-//                        requestBody.get("location"),
-//                        requestBody.get("contactInformation"),
-//                        company
-//                )
-//        );
-//    }
+    public Advert addAdvert(Map<String,String> requestBody){
+        Company company= companyRepo.findCompanyByCompanyId(Long.valueOf(requestBody.get("company")));
+        Advert advert=advertRepo.save(
+                new Advert(
+                        requestBody.get("jobTitle"),
+                        requestBody.get("jobSummary"),
+                        requestBody.get("location"),
+                        requestBody.get("contactInformation"),
+                        company
+                )
+        );
+        return advert;
+    }
 
     public Profile getProfileOfUser(long id) throws UserNotFoundException {
         User user= findUserById(id);
@@ -365,10 +367,6 @@ public class UserService implements UserDetailsService {
     public List<Education> getEducationOfUser(long id){
         User user=findUserById(id);
         List<Education> education=educationRepo.getEducationByUser(user);
-        for(Education ed:education){
-            System.out.println("start date:"+ed.getStart_date());
-            System.out.println("start date:"+ed.getEnd_date());
-        }
 
         return education;
     };
